@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match_card: one
+  winning_chicken: one
+  win_method: MyString
+  duration_seconds: 1
+  admin_notes: MyText
+
+two:
+  match_card: two
+  winning_chicken: two
+  win_method: MyString
+  duration_seconds: 1
+  admin_notes: MyText

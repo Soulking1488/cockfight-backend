@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  scheduled_at: 2026-08-03 11:42:41
+  red_corner_chicken: one
+  blue_corner_chicken: one
+  status: 1
+  odds_red: 9.99
+  odds_blue: 9.99
+
+two:
+  title: MyString
+  scheduled_at: 2026-08-03 11:42:41
+  red_corner_chicken: two
+  blue_corner_chicken: two
+  status: 1
+  odds_red: 9.99
+  odds_blue: 9.99

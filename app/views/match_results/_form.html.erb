@@ -1,0 +1,42 @@
+<%= form_with(model: match_result, class: "contents") do |form| %>
+  <% if match_result.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(match_result.errors.count, "error") %> prohibited this match_result from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% match_result.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :match_card_id %>
+    <%= form.text_field :match_card_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_result.errors[:match_card_id].none?, "border-red-400 focus:outline-red-600": match_result.errors[:match_card_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :winning_chicken_id %>
+    <%= form.text_field :winning_chicken_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_result.errors[:winning_chicken_id].none?, "border-red-400 focus:outline-red-600": match_result.errors[:winning_chicken_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :win_method %>
+    <%= form.text_field :win_method, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_result.errors[:win_method].none?, "border-red-400 focus:outline-red-600": match_result.errors[:win_method].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :duration_seconds %>
+    <%= form.number_field :duration_seconds, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_result.errors[:duration_seconds].none?, "border-red-400 focus:outline-red-600": match_result.errors[:duration_seconds].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :admin_notes %>
+    <%= form.textarea :admin_notes, rows: 4, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_result.errors[:admin_notes].none?, "border-red-400 focus:outline-red-600": match_result.errors[:admin_notes].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

@@ -1,0 +1,52 @@
+<%= form_with(model: match_card, class: "contents") do |form| %>
+  <% if match_card.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(match_card.errors.count, "error") %> prohibited this match_card from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% match_card.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_card.errors[:title].none?, "border-red-400 focus:outline-red-600": match_card.errors[:title].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :scheduled_at %>
+    <%= form.datetime_field :scheduled_at, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_card.errors[:scheduled_at].none?, "border-red-400 focus:outline-red-600": match_card.errors[:scheduled_at].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :red_corner_chicken_id %>
+    <%= form.text_field :red_corner_chicken_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_card.errors[:red_corner_chicken_id].none?, "border-red-400 focus:outline-red-600": match_card.errors[:red_corner_chicken_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :blue_corner_chicken_id %>
+    <%= form.text_field :blue_corner_chicken_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_card.errors[:blue_corner_chicken_id].none?, "border-red-400 focus:outline-red-600": match_card.errors[:blue_corner_chicken_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :status %>
+    <%= form.number_field :status, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_card.errors[:status].none?, "border-red-400 focus:outline-red-600": match_card.errors[:status].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :odds_red %>
+    <%= form.text_field :odds_red, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_card.errors[:odds_red].none?, "border-red-400 focus:outline-red-600": match_card.errors[:odds_red].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :odds_blue %>
+    <%= form.text_field :odds_blue, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match_card.errors[:odds_blue].none?, "border-red-400 focus:outline-red-600": match_card.errors[:odds_blue].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

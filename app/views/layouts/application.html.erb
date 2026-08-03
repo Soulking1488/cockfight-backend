@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cockfight Arena - Satire Platform</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
+    <nav class="bg-slate-900 text-white shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center space-x-3">
+            <%= link_to root_path, class: "font-black text-xl tracking-wider text-red-500 hover:text-red-400 flex items-center gap-2" do %>
+              <span>🐓</span> COCKFIGHT ARENA
+            <% end %>
+          </div>
+
+          <div class="flex items-center space-x-4 text-sm font-medium">
+            <% if logged_in? %>
+              <%= link_to "Match Cards", match_cards_path, class: "hover:text-red-400" %>
+              <%= link_to "My Chickens", chickens_path, class: "hover:text-red-400" %>
+              <%= link_to "My Bets", bets_path, class: "hover:text-red-400" %>
+
+              <div class="bg-slate-800 border border-slate-700 px-3 py-1 rounded-full text-amber-400 font-mono text-xs">
+                💰 <%= number_to_currency(current_user.wallet_balance) %>
+              </div>
+
+              <% if admin? %>
+                <span class="bg-red-900/60 text-red-300 text-xs px-2 py-0.5 rounded uppercase font-bold border border-red-700">Admin</span>
+              <% end %>
+
+              <%= button_to "Logout", logout_path, method: :delete, class: "bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded transition-colors text-xs cursor-pointer" %>
+            <% else %>
+              <%= link_to "Log In", login_path, class: "text-slate-300 hover:text-white" %>
+              <%= link_to "Sign Up", signup_path, class: "bg-red-600 hover:bg-red-700 text-white px-3.5 py-1.5 rounded-md transition-colors" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4">
+      <% if notice %>
+        <div class="bg-emerald-100 border border-emerald-400 text-emerald-800 px-4 py-3 rounded relative mb-4" role="alert">
+          <span class="block sm:inline"><%= notice %></span>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="bg-red-100 border border-red-400 text-red-800 px-4 py-3 rounded relative mb-4" role="alert">
+          <span class="block sm:inline"><%= alert %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <%= yield %>
+    </main>
+  </body>
+</html>

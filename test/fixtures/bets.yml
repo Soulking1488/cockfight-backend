@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  match_card: one
+  chosen_corner: MyString
+  amount: 9.99
+  status: 1
+  payout: 9.99
+
+two:
+  user: two
+  match_card: two
+  chosen_corner: MyString
+  amount: 9.99
+  status: 1
+  payout: 9.99

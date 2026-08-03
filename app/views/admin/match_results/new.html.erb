@@ -1,0 +1,63 @@
+<div class="max-w-2xl mx-auto space-y-6">
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="text-2xl font-extrabold text-white">Settle Fight & Distribute Payouts ⚖️</h1>
+      <p class="text-slate-400 text-sm mt-1"><%= @match_card.title %></p>
+    </div>
+    <%= link_to "← Cancel", admin_dashboard_path, class: "text-slate-400 hover:text-white text-sm" %>
+  </div>
+
+  <div class="bg-slate-800 border border-slate-700 p-6 rounded-xl space-y-6">
+    <!-- Match Odds Summary -->
+    <div class="grid grid-cols-2 gap-4 bg-slate-900 p-4 rounded-lg border border-slate-700 text-xs">
+      <div>
+        <span class="text-red-400 font-bold block">🔴 Red: <%= @match_card.red_corner_chicken.name %></span>
+        <span class="text-slate-400 font-mono">Pool: $<%= @match_card.total_red_pool %> (<%= @match_card.red_odds %>x)</span>
+      </div>
+      <div>
+        <span class="text-blue-400 font-bold block">🔵 Blue: <%= @match_card.blue_corner_chicken.name %></span>
+        <span class="text-slate-400 font-mono">Pool: $<%= @match_card.total_blue_pool %> (<%= @match_card.blue_odds %>x)</span>
+      </div>
+    </div>
+
+    <%= form_with(model: [:admin, @match_card, @match_result], url: admin_match_card_match_results_path(@match_card), class: "space-y-6") do |f| %>
+      <!-- Winner Selection -->
+      <div>
+        <label class="block text-sm font-semibold text-slate-300 uppercase mb-2">Select Victorious Rooster</label>
+        <div class="grid grid-cols-2 gap-4">
+          <label class="flex items-center gap-3 bg-red-950/50 border border-red-800 p-4 rounded-lg cursor-pointer hover:bg-red-900/40">
+            <%= f.radio_button :winning_chicken_id, @match_card.red_corner_chicken_id, class: "text-red-600 focus:ring-red-500", required: true %>
+            <div>
+              <span class="font-bold text-red-200 block text-sm"><%= @match_card.red_corner_chicken.name %></span>
+              <span class="text-xs text-red-400">Red Corner</span>
+            </div>
+          </label>
+
+          <label class="flex items-center gap-3 bg-blue-950/50 border border-blue-800 p-4 rounded-lg cursor-pointer hover:bg-blue-900/40">
+            <%= f.radio_button :winning_chicken_id, @match_card.blue_corner_chicken_id, class: "text-blue-600 focus:ring-blue-500", required: true %>
+            <div>
+              <span class="font-bold text-blue-200 block text-sm"><%= @match_card.blue_corner_chicken.name %></span>
+              <span class="text-xs text-blue-400">Blue Corner</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Win Method -->
+      <div>
+        <%= f.label :win_method, "Victory Condition / Method", class: "block text-sm font-medium text-slate-300 mb-1" %>
+        <%= f.select :win_method, ["Knockout (KO)", "Technical KO (TKO)", "Judge Decision", "Opponent Forfeited/Fled"], {}, class: "block w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white text-sm" %>
+      </div>
+
+      <!-- Match Details -->
+      <div>
+        <%= f.label :details, "Fight Commentary / Notes", class: "block text-sm font-medium text-slate-300 mb-1" %>
+        <%= f.text_area :details, rows: 3, class: "block w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white text-sm", placeholder: "Optional notes on how the fight unfolded..." %>
+      </div>
+
+      <div class="pt-4 border-t border-slate-700 flex justify-end">
+        <%= f.submit "Declare Winner & Execute Payouts", class: "px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-sm transition-colors cursor-pointer" %>
+      </div>
+    <% end %>
+  </div>
+</div>
